@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>Weather</title>
+
+		<!-- Loading third party fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		
+         <!--http://jquery.com/ -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<!--<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>-->
+
+		<!-- http://handlebarsjs.com/ -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+        
+        <!--<script src="{{ url_for('static', filename='js/app.js') }}"></script>-->
+        <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>  <!-- page loading script -->
+        
+        
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		<srcipt src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"></srcipt>
+		
+		{{ JSGlue.include() }}
+		
+        
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+	</head>
+
+    <!--<div class ="js">-->
+	<body>
+	
+		<div id="preloader"></div>          <!-- page loading -->
+		 
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="{{ url_for('index') }}" class="branding">
+						<img src="{{ url_for('static', filename='images/logo.png') }}" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">Weather.io</h1>
+							<small class="site-description">weather updates!</small>
+						</div>
+					</a>
+
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="{{ url_for('index') }}">Home</a></li>
+							<!--<li class="menu-item"><a href="{{ url_for('hourlyData') }}">Hourly Forecast</a></li>-->
+							<!--<li class="menu-item"><a href="{{ url_for('news') }}">News</a></li>-->
+							<li class="menu-item"><a href="{{ url_for('live_cameras') }}">Live cameras</a></li>
+							<li class="menu-item"><a href="{{ url_for('photos') }}">Photos</a></li>
+							<li class="menu-item"><a href="{{ url_for('contact') }}">Contact</a></li>
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
+
+			<div class="hero" style="background-image: url(static/images/banner1.jpg)">
+				<div class="container">
+					<form action="#" class="find-location">
+						<input type="text" id="q" placeholder="Find your location...">
+						<!--<input type="submit" value="Find">-->
+					</form>
+
+				</div>
+			</div>
+			<div id="table" class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div id ="day0" class="day"></div>
+								<div id="curr_date" class="date"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="loc" class="location"></div>
+								<div class="degree">
+									<div id ="curr_deg" class="num"></div>
+									<div id="curr_ficon" class="forecast-icon">
+									</div>	
+								</div>
+								<span><img src="{{ url_for('static', filename='images/icon-umberella.png') }}" alt="">20%</span>
+								<span id="wind">
+							
+								</span>
+								<span><img src="{{ url_for('static', filename='images/icon-compass.png') }}" alt="">East</span>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div id ="day1" class="day"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="ficon1" class="forecast-icon">
+								</div>
+								<div id="deg1" class="degree"><sup>o</sup>C</div>
+								<!--<small>18<sup>o</sup></small>-->
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div id ="day2" class="day"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="ficon2" class="forecast-icon">
+								</div>
+								<div id="deg2" class="degree"><sup>o</sup>C</div>
+							
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div id ="day3" class="day"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="ficon3" class="forecast-icon">
+								</div>
+								<div id="deg3" class="degree"><sup>o</sup>C</div>
+							
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div id ="day4" class="day"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="ficon4"class="forecast-icon">
+								</div>
+								<div id="deg4"class="degree"><sup>o</sup>C</div>
+							
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div id ="day5"  class="day"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="ficon5" class="forecast-icon">
+								</div>
+								<div id="deg5" class="degree"><sup>o</sup>C</div>
+							
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div id ="day6" class="day"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div id="ficon6" class="forecast-icon">
+								</div>
+								<div id="deg6" class="degree"><sup>o</sup>C</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<main class="main-content">              <!-- daily summary -->  
+				<!--<div class="fullwidth-block">-->
+					<div id= "daily_summary" class="container">
+						<!--<div id ="fullDetail" class="fullwidth-block">-->
+						
+					 <!--  </div>-->
+					</div>
+				
+				<!--</div>-->
+			</main>
+			<main class="main-content">
+				<div class="fullwidth-block">
+					<div class="container">
+						<h2 class="section-title">Live cameras</h2>
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/united-states/new-york/new-york/new-york-manhattan.html#webcam" target="_blank"><img src="static/images/lc8newyork.jpg" alt=""></figure>
+									</a>
+									<h3 class="location">New York Manhattan</h3>
+									<!--<small class="date">8 oct, 8:00AM</small>-->
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/albania/durres/durres/durres-beach.html#webcam" target="_blank"><img src="static/images/lc9albania.jpg" alt=""></figure>
+									</a>
+									<h3 class="location">Albania</h3>
+									<!--<small class="date">8 oct, 8:00AM</small>-->
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/norge/nordland/lofoten/henningsvaer.html#webcam" target="_blank"><img src="static/images/lc10norway.jpg" alt=""></figure>
+									</a>
+									<h3 class="location">Norway</h3>
+									<!--<small class="date">8 oct, 8:00AM</small>-->
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/schweiz/graubunden/bernina/bernina-express.html#webcam" target="_blank"><img src="static/images/lc11redtrain.jpg" alt=""></figure>
+									</a>
+									<h3 class="location">Switzerland</h3>
+									<!--<small class="date">8 oct, 8:00AM</small>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="fullwidth-block" data-bg-color="#262936">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="news">
+									<div class="date">06.10</div>
+									<h3><a href="#">Doloremque laudantium totam sequi </a></h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe assumenda dolorem modi, expedita voluptatum ducimus necessitatibus. Asperiores quod reprehenderit necessitatibus harum, mollitia, odit et consequatur maxime nisi amet doloremque.</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="news">
+									<div class="date">06.10</div>
+									<h3><a href="#">Doloremque laudantium totam sequi </a></h3>
+									<p>Nobis architecto consequatur ab, ea, eum autem aperiam accusantium placeat vitae facere explicabo temporibus minus distinctio cum optio quis, dignissimos eius aspernatur fuga. Praesentium totam, corrupti beatae amet expedita veritatis.</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="news">
+									<div class="date">06.10</div>
+									<h3><a href="#">Doloremque laudantium totam sequi </a></h3>
+									<p>Enim impedit officiis placeat qui recusandae doloremque possimus, iusto blanditiis, quam optio delectus maiores. Possimus rerum, velit cum natus eos. Cumque pariatur beatae asperiores, esse libero quas ad dolorem. Voluptates.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="fullwidth-block">
+					<div class="container">
+						<div class="row">
+							<!--<div class="col-md-4">-->
+							<!--	<h2 class="section-title">Application features</h2>-->
+							<!--	<ul class="arrow-feature">-->
+							<!--		<li>-->
+							<!--			<h3>Natus error sit voluptatem accusantium</h3>-->
+							<!--			<p>Doloremque laudantium totam rem aperiam Inventore veritatis et quasi architecto beatae vitae.</p>-->
+							<!--		</li>-->
+							<!--		<li>-->
+							<!--			<h3>Natus error sit voluptatem accusantium</h3>-->
+							<!--			<p>Doloremque laudantium totam rem aperiam Inventore veritatis et quasi architecto beatae vitae.</p>-->
+							<!--		</li>-->
+							<!--		<li>-->
+							<!--			<h3>Natus error sit voluptatem accusantium</h3>-->
+							<!--			<p>Doloremque laudantium totam rem aperiam Inventore veritatis et quasi architecto beatae vitae.</p>-->
+							<!--		</li>-->
+							<!--	</ul>-->
+							<!--</div>-->
+							<div class="col-md-4">
+								<h2 class="section-title">Weather analysis</h2>
+								<ul class="arrow-list">
+									<li><a href="http://www.intellicast.com/National/Surface/Current.aspx?location=ustx0617">Current surface analysis</a></li>
+									<li><a href="http://www.weathercharts.org/">Meteorological chart analysis forecast North Atlantic Europe </a></li>
+									<li><a href="http://www.theweatherprediction.com/charts/">Analysis with charts</a></li>
+									<li><a href="http://www.anchorage.climatemps.com/">Anchorage Alaska weather analysis</a></li>
+									<li><a href="http://climateanalytics.org/">Climate Analytics</a></li>
+									<li><a href="https://www.wunderground.com/maps/">Weather underground maps and analysis</a></li>
+									
+								</ul>
+							</div>
+							<div class="col-md-4">
+								<h2 class="section-title">Awesome Photos</h2>
+								<div class="photo-grid">
+									<a href="{{ url_for('static', filename='images/ap1.jpg') }}"><img src="{{ url_for('static', filename='images/ap1.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/ap2.jpg') }}"><img src="{{ url_for('static', filename='images/ap2.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/ap3.jpg') }}"><img src="{{ url_for('static', filename='images/ap3.jpg') }}" style="width:100px" alt="#"></a>
+									<!--<a href="{{ url_for('static', filename='images/ap4.jpg') }}"><img src="{{ url_for('static', filename='images/ap4.jpg') }}" style="width:100px" alt="#"></a>-->
+									<a href="{{ url_for('static', filename='images/ap6.jpg') }}"><img src="{{ url_for('static', filename='images/ap6.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/ap7.jpg') }}"><img src="{{ url_for('static', filename='images/ap7.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/ap8.jpg') }}"><img src="{{ url_for('static', filename='images/ap8.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/w1.jpg') }}"><img src="{{ url_for('static', filename='images/w1.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/w2.jpg') }}"><img src="{{ url_for('static', filename='images/w2.jpg') }}" style="width:100px" alt="#"></a>
+									<a href="{{ url_for('static', filename='images/ap9.jpg') }}"><img src="{{ url_for('static', filename='images/ap9.jpg') }}" style="width:100px" alt="#"></a>
+
+									<!--<a href="#"><img src="images/thumb-9.jpg" alt="#"></a>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main> <!-- .main-content -->
+
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<form action="#" class="subscribe-form">
+								<input type="text" placeholder="Enter your email to subscribe...">
+								<input type="submit" value="Subscribe">
+							</form>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="social-links">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-pinterest"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<p class="colophon">Copyright 2014 Weather.io . All rights reserved</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+		
+
+		<!--<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>-->
+		<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+		
+	
+		
+		
+	</body>
+    <!--</div>-->
+</html>

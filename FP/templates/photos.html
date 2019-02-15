@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>Weather</title>
+
+		<!-- Loading third party fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="/static/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="/static/style.css">
+		
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+        
+        <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+	</head>
+	<body id="photos_body">
+		
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="/" class="branding">
+						<img src="/static/images/logo.png" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">Weather.io</h1>
+							<small class="site-description">weather updates!</small>
+						</div>
+					</a>
+
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
+							<!--<li class="menu-item"><a href="/news">News</a></li>-->
+							<li class="menu-item"><a href="/live_cameras">Live cameras</a></li>
+							<li class="menu-item"><a href="/photos">Photos</a></li>
+							<li class="menu-item"><a href="/contact">Contact</a></li>
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
+
+			<main class="main-content">
+				<div class="container">
+					<div class="breadcrumb">
+						<a href="/">Home</a>
+						<span>Photos</span>
+					</div>
+				</div>
+
+				<div class="fullwidth-block">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p2.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://www.exposureguide.com/inspiration/photographer-captures-extreme-weather-conditions-in-stunning-detail/">America's frightening stormy weather photo.</a></h3>
+										<p>Photographer Captures Extreme Weather Conditions in Stunning Detail.</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p3.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="https://www.csmonitor.com/World/Americas/2010/0601/Tropical-Storm-Agatha-floods-kill-150-cause-giant-sinkhole-in-Guatemala-City">Tropical Storm Agatha</a></h3>
+										<p>Tropical Storm Agatha floods kill 150, cause giant sinkhole in Guatemala City.</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p4.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://americannewsbroadcasting.blogspot.com/2017/01/california-storms-add-350-billion.html">Horrifying California Storm</a></h3>
+										<p>California storms add 350 billion gallons to parched reservoirs.</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p5.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://abc7chicago.com/weather/chicago-weather-several-inches-of-lake-effect-snow-falls/1799710/">Critical conditions of Chicago Weather</a></h3>
+										<p>Chicago Weather: Several inches of lake-effect snow dumped on city, suburbs.</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p6.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://www.stuff.co.nz/national/70946279/south-island-roads-open-after-heavy-snow">Heavy snow to hit the North Island</a></h3>
+										<p>The New Zealand Transport Agency (NZTA) reported winter driving conditions were in place for the South Island and warnings were in place to watch for ice and grit particularly in shaded areas and on bridge decks. 
+										Motorists are advised to carry chains when travelling alpine passes.Black ice is also forecast for Southland, which alongside parts of Otago could get more snow above 200m overnight Sunday..</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p8.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://luxeadventuretraveler.com/morges-tulip-festival/">Welcome Spring at the Morges Tulip Festival</a></h3>
+										<p>More than 150,000 tulips of 300 different varieties from around the world bloom on the shores of Lake Geneva in Parc de l’Indépendance...</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p7.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://articles.latimes.com/2013/jul/23/news/la-trb-mexico-deals-20130722">Heat strikes in Mexico.</a></h3>
+										<p>Mexico: Hot weather means hot deals south of the border.</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p9.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="https://www.niagarafallstourism.com/seasons/">Niagara Falls winter!</a></h3>
+										<p>Winter brings an added dimension of beauty to Niagara. The mist and spray from the falls combine with the cold drifting winds of winter to spray nearby ornamental walls, lamp posts, trees and buildings creating lovely ice sculptures. .</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p10.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://suburbantourist.ca/outdoors/hiking/hilton-falls-conservation-area-in-winter/">Hilton Falls Conservation Area in Winter</a></h3>
+										<p>Hilton Falls Conservation Area in winter is a magical place – snow-covered, still and for the most part very quiet...</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" style="background-image: url(static/images/p11.jpg)"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="http://flatheadbeacon.com/2017/04/23/discover-canadas-national-treasures/">Discover Canada’s National Treasures</a></h3>
+										<p>Canada’s first national park is truly a first-class destination and one of the country’s most popular attractions. Nestled on the eastern edges of Alberta’s Rocky Mountains, Banff is an idyllic getaway spanning 1.64 million acres defined by ancient glaciers, dense forests and towering peaks.</p>
+										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</main> <!-- .main-content -->
+
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<form action="#" class="subscribe-form">
+								<input type="text" placeholder="Enter your email to subscribe...">
+								<input type="submit" value="Subscribe">
+							</form>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="social-links">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-pinterest"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<p class="colophon">Copyright 2014 Weather.io . All rights reserved</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+		
+		<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+		<!--<script src="js/plugins.js"></script>-->
+		<!--<script src="js/app.js"></script>-->
+		
+	
+
+</body>
+    
+    
+</html>

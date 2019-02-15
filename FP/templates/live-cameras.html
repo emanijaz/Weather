@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		
+		<title>Weather</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+	</head>
+
+
+	<body id="live_body">
+		<iframe backgroung="#ffffff" border="none" frameborder="0" scrolling="none" width="350" height ="245" src=""></iframe>
+		
+		
+		
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="{{ url_for('index') }}" class="branding">
+						<img src="{{ url_for('static', filename='images/logo.png') }}" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">Weather.io</h1>
+							<small class="site-description">weather updates!</small>
+						</div>
+					</a>
+
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="{{ url_for('index') }}">Home</a></li>
+							<!--<li class="menu-item"><a href="{{ url_for('news') }}">News</a></li>-->
+							<li class="menu-item"><a href="{{ url_for('live_cameras') }}">Live cameras</a></li>
+							<li class="menu-item"><a href="{{ url_for('photos') }}">Photos</a></li>
+							<li class="menu-item"><a href="{{ url_for('contact') }}">Contact</a></li>
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
+
+			<main class="main-content">
+				<div class="container">
+					<div class="breadcrumb">
+						<a href="{{ url_for('index') }}">Home</a>
+						<span>Live cameras</span>
+					</div>
+				</div>
+
+				<div class="fullwidth-block">
+					<div class="container">
+						<div class="filter">
+							<div class="country filter-control">
+								<label for="">Country</label>
+								<span class="select control">
+									<select name="" id="">
+										<option value="">All Countries</option>
+									</select>
+								</span>
+							</div>
+							<div class="count filter-control">
+								<label for="">Show per page</label>
+								<span class="select control">
+									<select name="" id="">
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">3</option>
+										<option value="">4</option>
+										<option value="">5</option>
+										<option value="">6</option>
+										<option value="">7</option>
+										<option value="">8</option>
+										<option value="">9</option>
+										<option value="">10</option>
+									</select>
+								</span>
+							</div>
+							<div class="quality filter-control">
+								<label for="">Only high quality</label>
+								<span class="select control">
+									<select name="" id="">
+										<option value="">Yes</option>
+										<option value="">No</option>
+									</select>
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/italia/lazio/roma/colosseo.html#webcam" target="_blank"><img src="static/images/lc1.jpg" alt=""></figure></a>
+									<h3 class="location">Italy closseum</h3>
+									<!--<small class="date">8 oct, 8:00AM</small>-->
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/italia/lazio/roma/piazza-navona.html#webcam" target="_blank"><img src="static/images/lc2.jpg" alt=""></figure></a>
+									<h3 class="location">Rome Piazza Novana</h3>
+									
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/italia/calabria/vibo-valentia/tropea.html#webcam" target="_blank"><img src="static/images/lc3tropia.jpg" alt=""></figure></a>
+									<h3 class="location">Tropia</h3>
+								
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/italia/liguria/genova/portofino-riviera-ligure.html#webcam" target="_blank"><img src="static/images/lc4genoa.jpg" alt=""></figure></a>
+									<h3 class="location">Genoa - Portofino - Ligurian Riviera</h3>
+								
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/italia/sicilia/messina/stromboli.html#webcam" target="_blank"><img src="static/images/lc5stromboli.jpg" alt=""></figure>
+									<h3 class="location">stromboli Volcano</h3>
+								
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/united-arab-emirates/dubai/dubai/dubai-marina.html#webcam" target="_blank"><img src="static/images/lc6dubai.jpg" alt=""></figure></a>
+									<h3 class="location">Dubai Marina</h3>
+								
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/israel/jerusalem-district/jerusalem/western-wall.html#webcam" target="_blank"><img src="static/images/lc6jreusalem.jpg" alt=""></figure></a>
+									<h3 class="location">Jerusalem - Western Wall</h3>
+								
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="live-camera">
+									<figure class="live-camera-cover">
+									<a href="https://www.skylinewebcams.com/en/webcam/espana/comunidad-valenciana/alicante/benidorm-playa-poniente.html#webcam" target="_blank"><img src="static/images/lc7benidorm.jpg" alt=""></figure></a>
+									<h3 class="location">Benidorm - Playa de Poniente - Puerto</h3>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</main> <!-- .main-content -->
+
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<form action="#" class="subscribe-form">
+								<input type="text" placeholder="Enter your email to subscribe...">
+								<input type="submit" value="Subscribe">
+							</form>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="social-links">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-pinterest"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<p class="colophon">Copyright 2014 Weather.io . All rights reserved</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+		
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+		
+	</body>
+
+</html>
